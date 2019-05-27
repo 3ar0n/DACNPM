@@ -116,3 +116,32 @@ span.psw {
         width: 100%;
     }
 }
+.fixed1{
+    background-image: url(./assets/img/stretched-1920-1080-678362.jpg);
+    z-index: -1;
+}
+.fixed2{
+    background-image: url(./assets/img/stretched-1920-1080-691382.jpg);
+    z-index: -1;
+}
+.fixed3{
+    background-image: url(./assets/img/stretched-1920-1080-692049.jpg);
+    z-index: -1;
+}
+.fixed4{
+    background-image: url(./assets/img/stretched-1920-1080-698610.jpg);
+    z-index: -1;
+}
+.dark{
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 14rem 2rem;
+}
+.fixed-background h3{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+.fixed-background p{
+    margin-top: 1.5rem;
+    color: white;
+}

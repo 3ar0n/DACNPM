@@ -58,7 +58,7 @@ margin-right: 0px!important;
   height: 100%;
   z-index: -999!important;
 }
-.fixed {
+.fixed1, .fixed2, .fixed3, .fixed4 {
   position: fixed;
   display: block;
   top: 0;
