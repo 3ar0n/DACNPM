@@ -87,11 +87,7 @@
                     </li>
                     <div class="dropdown-divider"></div>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./ListBill.html">Biên Lai Phí Thuê Nhà</a>
-                    </li>
-                    <div class="dropdown-divider"></div>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">...</a>
+                        <a class="nav-link text-white" href="#">Biên Lai Phí Thuê Nhà</a>
                     </li>
                     <div class="dropdown-divider"></div>
                     <li class="nav-item">
@@ -110,81 +106,129 @@
                 <hr class="d-sm-none">
             </div>
             <div class="col-sm-10">
-                <!-- list renter -->
-                <div class="text-center">
-                    <h2>NGƯỜI THUÊ PHÒNG</h2>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="container">
-                            <div class="card mb-3" style="min-width: 500px;">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4 text-center">
-                                        <i class="fas fa-user fa-8x"></i>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <a href="./profile.html" style="color:#505962">
-                                                <h5 class="card-title">Nguyễn Văn A</h5>
-                                            </a>
-                                            <p class="card-text">
-                                                CMND: 27******8
-                                            </p>
-                                            <p class="card-text">
-                                                SĐT: 0838822596
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                <h1 class="text-center">TÍNH PHÍ</h1>
+                <div class="container">
+                    <div class="container">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Tháng</label>
+                            <div class="form-group">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                    <option selected>Choose...</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="3">04</option>
+                                    <option value="1">05</option>
+                                    <option value="2">06</option>
+                                    <option value="3">07</option>
+                                    <option value="3">08</option>
+                                    <option value="1">09</option>
+                                    <option value="2">10</option>
+                                    <option value="3">11</option>
+                                    <option value="3">12</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container">
-                            <div class="card mb-3" style="min-width: 500px;">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4 text-center">
-                                        <i class="fas fa-user fa-8x"></i>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <a href="#" style="color:#505962">
-                                                <h5 class="card-title">Nguyễn Văn B</h5>
-                                            </a>
-                                            <p class="card-text">
-                                                CMND: 27******8
-                                            </p>
-                                            <p class="card-text">
-                                                SĐT: 0838822596
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Ngày Thu</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">chỉ số Điện</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">chỉ số Nước</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Số xe đạp</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Số xe máy</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Phụ Phí</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Phụ Phí</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
                         </div>
                     </div>
-                </div>
-                <!-- plus button -->
-                <div class="row">
-                    <div class="col-5"></div>
-                    <div class="col-2">
-                        <a href="#" style="color: #505962">
-                            <div class="card bg-light mb-3" style="max-width: 10rem;">
-                                <div class="text-center">
-                                    <i class="fas fa-plus fa-9x"></i>
-                                </div>
-                            </div>
-                        </a>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-dark"
+                            onclick="document.getElementById('id01').style.display='block'">Tạo Biên Lai</button>
                     </div>
-                    <div class="col-5"></div>
                 </div>
-                <!-- end plus button -->
-                <!-- end list renter -->
             </div>
+            <!-- end list renter -->
         </div>
-
     </div>
-
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="container">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tháng</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="5">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Ngày Thu</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="25/05/2019">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Phí Thuê</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="2.500.000 VNĐ">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tiền Điện</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="250.000 VNĐ">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tiền Nước</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="50.000 VNĐ">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tiền Wifi</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="80.000 VNĐ">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tiền Xe Đạp</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="300.000 VNĐ">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tiền Xe Máy</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="0 VNĐ">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Phụ Phí</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="400.000 VNĐ (Sửa cữa sổ)">
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tổng Tiền</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="5.100.000 VNĐ">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Xác Nhận</button>
+            </div>
+            <div class="container1" style="background-color:#f1f1f1">
+                <div class="container">
+                    <button type="button" class="btn btn-danger"
+                        onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <!-- Footer -->
     <footer class="page-footer font-small unique-color-dark">
 
