@@ -18,15 +18,16 @@ def findName():
 	return render_template('users.html', users=temp)
 	#return json.dumps(temp)
 	
-@app.route("/user/<_username>")
-def findNameID(_username):
+@app.route("/user/<_cmnd>")
+def findNameID(_cmnd):
 	db.connectDB()
-	results = db.getUser(_username);
+	results = db.getUserInfo(_cmnd);
 	temp =[]
 	for data in results:
 		temp.append(data)
 	db.closeDB()
-	return json.dumps(temp)
+	return render_template('user_info.html', user=temp[0])
+	#return json.dumps(temp)
 
 @app.route("/insert")
 def insertDB():

@@ -27,6 +27,15 @@ def getUser(_id):
 	cursor.execute(sql)
 	#return data
 	return cursor
+
+def getUserInfo(_cmnd):
+	sql = "SELECT ten, sdt, dia_chi, cmnd, nghe_nghiep, noi_lam_viec, phong_thue, DATE_FORMAT(ngay_thue, '%e/%m/%Y') as ngay_vao_o, tinh_trang FROM `khach_tro` WHERE khach_tro.cmnd = '{0}'".format(_cmnd)
+	cursor = connection.cursor()
+	# Thực thi câu lệnh truy vấn (Execute Query).
+	cursor.execute(sql)
+	#return data
+	return cursor
+
 def insertData(_id, _password, _type):
 	sql ="INSERT into `user`(id, mat_khau, account) values ('{0}','{1}','{2}')".format(_id,_password,_type)
 	print("inserted !!!")

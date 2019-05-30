@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Users</title>
+</head>
+<body>
+    Thông tin user:
+    {% if user %}
+    <ul id="navigation">
+        <li>Tên: {{user.ten}}</li>
+        <li>Số điện thoại: {{user.sdt}}</li>
+        <li>Địa chỉ: {{user.dia_chi}}</li>
+        <li>CMND: {{user.cmnd}}</li>
+        <li>Nghề nghiệp: {{user.nghe_nghiep}}</li>
+        <li>Nơi làm việc: {{user.noi_lam_viec}}</li>
+        <li>Ngày thuê: {{user.ngay_vao_o}}</li>
+        <li>Phòng thuê: {{user.phong_thue}}</li>
+        <li>Tình trạng: {% if user.tinh_trang %} Đang thuê {% else %} Ngừng thuê {% endif %}</li>
+    </ul>
+    {% endif %}
+</body>
+</html>
