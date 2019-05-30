@@ -6,7 +6,7 @@ def connectDB():
 	global connection
 	connection = pymysql.connect(host='localhost',
                             user='root',
-                            password='123456',                             
+                            password='',                             
                             db='cnpm',
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)
@@ -20,16 +20,16 @@ def getData():
 	cursor.execute(sql)
 	#return data
 	return cursor
-def getUser(id):
-	sql = "SELECT * FROM `user` WHERE user.id = {0}".format(id) 
+def getUser(_id):
+	sql = "SELECT * FROM `user` WHERE user.id = '{0}'".format(_id) 
 	cursor = connection.cursor()
 	# Thực thi câu lệnh truy vấn (Execute Query).
 	cursor.execute(sql)
 	#return data
 	return cursor
-def insertData(_id,mat_khau,tai_khoan):
-	sql ="INSERT into `user`(id, mat_khau, tai_khoan) values ({0},{1},{2})".format(_id,mat_khau,tai_khoan)
-	print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+def insertData(_id, _password, _type):
+	sql ="INSERT into `user`(id, mat_khau, account) values ('{0}','{1}','{2}')".format(_id,_password,_type)
+	print("inserted !!!")
 	cursor = connection.cursor()
 	cursor.execute(sql)
 	connection.commit()
