@@ -3,6 +3,7 @@ import db
 import json
 app = Flask(__name__)
 
+# truy cập home
 @app.route("/")
 def hello():
 	return render_template('layout.loitd',var1="ahihi")
@@ -10,7 +11,7 @@ def hello():
 @app.route("/users")
 def findName():
 	db.connectDB()
-	results = db.getData()
+	results = db.getUser()
 	temp =[]
 	for data in results:
 		temp.append(data)
@@ -44,7 +45,7 @@ def login():
 	username = request.form['username']
 	password = request.form['password']
 	#print(request.data)
-	users = db.getUserByUsername(username)
+	users = db.getUser(username)
 	db.closeDB()
 	for user in users:
 		if (user == None):
