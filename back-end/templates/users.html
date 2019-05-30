@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Users</title>
+</head>
+<body>
+    Danh sách user:
+
+    <ul id="navigation">
+    {% for item in users %}
+        <li>{{item.id}} {{item.mat_khau}} {% if item.account_type %} Chủ trọ {% else %} Khách trọ {% endif %}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

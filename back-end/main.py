@@ -15,7 +15,8 @@ def findName():
 	for data in results:
 		temp.append(data)
 	db.closeDB()
-	return json.dumps(temp)
+	return render_template('users.html', users=temp)
+	#return json.dumps(temp)
 	
 @app.route("/user/<_username>")
 def findNameID(_username):
