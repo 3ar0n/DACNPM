@@ -27,6 +27,13 @@ def getUser(id):
 	cursor.execute(sql)
 	#return data
 	return cursor
+def getUserByUsername(username):
+	sql = "SELECT * FROM `user` WHERE user.tai_khoan = '{0}'".format(username) 
+	cursor = connection.cursor()
+	# Thực thi câu lệnh truy vấn (Execute Query).
+	cursor.execute(sql)
+	#return data
+	return cursor
 def insertData(_id,mat_khau,tai_khoan):
 	sql ="INSERT into `user`(id, mat_khau, tai_khoan) values ({0},{1},{2})".format(_id,mat_khau,tai_khoan)
 	print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
