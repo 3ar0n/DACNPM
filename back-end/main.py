@@ -16,18 +16,11 @@ def findName():
 		temp.append(data)
 	db.closeDB()
 	return json.dumps(temp)
-<<<<<<< HEAD
+	
 @app.route("/user/<_username>")
 def findNameID(_username):
 	db.connectDB()
 	results = db.getUser(_username);
-=======
-
-@app.route("/user/<int:username>")
-def findNameID(username):
-	db.connectDB()
-	results = db.getUser(username)
->>>>>>> 38a8ce6de7134140ae44f0f3623dbdbed5d5df8b
 	temp =[]
 	for data in results:
 		temp.append(data)
@@ -40,9 +33,7 @@ def insertDB():
 	_id = "test1235"
 	db.insertData(_id, "1234567", 0)
 	db.closeDB()
-<<<<<<< HEAD
 	return "OK"
-=======
 
 @app.route("/login", methods=['POST'])
 def login():
@@ -61,4 +52,3 @@ def login():
 			return user
 
 	
->>>>>>> 38a8ce6de7134140ae44f0f3623dbdbed5d5df8b
