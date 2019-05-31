@@ -52,4 +52,14 @@ def login():
 	if (id == user['id'] and password == user['mat_khau']):
 		return Response(True, status=200, mimetype='application/json')
 	return Response(False, status=401, mimetype='application/json')
+
+@app.route("/customerinroom/<roomid>")
+def getcustomer(roomid):
+	db.connectDB()
+	return json.dumps(db.getCustomerByRoomId(roomid))
+
+@app.route("/rooms")
+def getRooms():
+	db.connectDB()
+	return json.dumps(db.getAllRooms())
 	
