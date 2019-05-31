@@ -1,4 +1,4 @@
-import roomAction from './rooms.action';
+import roomAction from './room.action';
 
 const INITIAL_STATE = {
   isFetchingRoom: false,

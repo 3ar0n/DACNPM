@@ -26,7 +26,7 @@ export default {
     }
   });
   
-  const doFetchRoomslError = message => ({
+  const doFetchRoomError = message => ({
     type: FETCH_ROOM_ERROR,
     payload: {
       message

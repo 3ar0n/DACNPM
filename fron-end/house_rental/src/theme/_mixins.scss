@@ -1,0 +1,93 @@
+@import './colors';
+@import './new-colors';
+
+@mixin navbar-text {
+  cursor: pointer;
+  color: $float-text-dark;
+  transition: color 0.2s;
+  &:hover {
+    color: white;
+  }
+}
+
+@mixin ghost-btn-hover {
+  &:hover {
+    border-color: $ghost-button-hover-dark;
+    color: $ghost-button-hover-dark;
+  }
+}
+
+@mixin hot-gradient-btn {
+  background-image: linear-gradient(
+    86.2deg,
+    #ef7029 0%,
+    #ff4242 49.24%,
+    #ff4342 49.25%,
+    #f93eac 101.28%
+  );
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-image: linear-gradient(to right, #f93eac);
+  }
+}
+
+@mixin navbar-anchor($color) {
+  &:link {
+    color: $color;
+    text-decoration: none;
+  }
+  &:visited {
+    color: $color;
+    text-decoration: none;
+  }
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+  &:active {
+    color: $color;
+    text-decoration: none;
+  }
+}
+
+@mixin background-darker($opacity) {
+  background-color: rgba(34, 34, 34, $opacity);
+}
+
+@mixin highlight-for-whitebg {
+  box-shadow: 0 0 10px 0 rgba(23, 128, 224, 0.2);
+}
+
+@mixin white-dot-pattern-bg {
+  background-image: url('../../assets/wrap-bg-body.png');
+  background-repeat: repeat;
+}
+
+@mixin background-primary {
+  background-color: $background-primary !important;
+}
+
+@mixin baloo-font {
+  font-family: 'Baloo', cursive;
+}
+
+@mixin opacity-background-image($opacity, $url) {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-image: url($url);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  &::after {
+    content: '';
+    opacity: $opacity;
+    background-color: black;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+  };
+}

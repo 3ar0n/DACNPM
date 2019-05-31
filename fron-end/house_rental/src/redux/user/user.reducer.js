@@ -50,15 +50,15 @@ const reducer = (state = INITIAL_STATE, action) => {
     }
 
     case userAction.FETCH_USER: {
-      return applyFetchData(state, action);
+      return applyFetchUser(state, action);
     }
 
     case userAction.FETCH_USER_SUCCESS: {
-      return applyFetchDataSuccess(state, action);
+      return applyFetchUserSuccess(state, action);
     }
 
     case userAction.FETCH_USER_ERROR: {
-      return applyFetchDataError(state, action);
+      return applyFetchUserError(state, action);
     }
    
     default: return state;
