@@ -78,6 +78,15 @@ def newBill():
 	tien_co_ban = 1000000					# giá phòng (từ bảng phong_tro)
 	tien_phu_thu = 50000					# tiền phụ thu
 	thong_tin_phu_thu = "bóng đèn"			# thông tin phụ thu
+@app.route("/customerinroom/<roomid>")
+def getcustomer(roomid):
+	db.connectDB()
+	return json.dumps(db.getCustomerByRoomId(roomid))
+
+@app.route("/rooms")
+def getRooms():
+	db.connectDB()
+	return json.dumps(db.getAllRooms())
 	
 	results = db.getIndexData(_room, _lastMonth)
 	_cs_dien_old = results['cs_dien']

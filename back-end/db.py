@@ -77,7 +77,7 @@ def addRoomInfo(_room, _info):
 
 # lấy thông tin cơ bản của user theo username (bị trùng với truy vấn phía trên)
 def getUserById(id):
-	sql = "SELECT id, mat_khau FROM `user` WHERE user.id = '{0}' and user.account_type=1".format(id) 
+	sql = "SELECT id, mat_khau FROM `user` WHERE user.id = '{0}'".format(id) 
 	cursor = connection.cursor()
 	cursor.execute(sql)
 	return cursor.fetchone()
@@ -136,6 +136,18 @@ def updateBill(_billID, _total, _extra, _extraInfo):
 	
 def closeDB():
 	connection.close()
+
+def getCustomerByRoomId(roomId):
+	sql = "SELECT ten, sdt, cmnd FROM `khach_tro` WHERE khach_tro.phong_thue = '{0}' and khach_tro.tinh_trang=1".format(roomId)
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchall()
+
+def getAllRooms():
+	sql = "SELECT c.phong_thue as ma_phong, count(c.cmnd) as so_nguoi from khach_tro c group by c.phong_thue"
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchall()
 #if __name__ == "__main__":
 #	connection = connectDB()
 #	results = getUser(1);
