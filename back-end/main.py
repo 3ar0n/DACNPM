@@ -2,22 +2,6 @@ from flask import Flask,request,render_template, Response
 import db
 import json
 app = Flask(__name__)
-
-# truy cập home
-@app.route("/")
-def hello():
-	return render_template('layout.loitd',var1="ahihi")
-
-@app.route("/users")
-def findName():
-	db.connectDB()
-	results = db.getUser()
-	temp =[]
-	for data in results:
-		temp.append(data)
-	db.closeDB()
-	return render_template('users.html', users=temp)
-	#return json.dumps(temp)
 	
 @app.route("/user/<_cmnd>")
 def findNameID(_cmnd):
@@ -27,7 +11,7 @@ def findNameID(_cmnd):
 	for data in results:
 		temp.append(data)
 	db.closeDB()
-	return render_template('user_info.html', user=temp[0])
+	return json.dumps(user=temp[0])
 	#return json.dumps(temp)
 
 @app.route("/insert")
