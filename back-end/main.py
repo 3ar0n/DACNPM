@@ -75,18 +75,13 @@ def newBill():
 	db.addBillInfo(_room,_lastBillID,_curMonth,_cs_dien,_cs_nuoc)	# thêm các chỉ sôs trong biên lai tháng hiện tại
 
 	# tính tiền phòng
-	tien_co_ban = 1000000					# giá phòng (từ bảng phong_tro)
+	results = db.getRoomPrice(_room)
+	tien_co_ban = results['gia_phong']		# giá phòng (từ bảng phong_tro)
+
+	#tien_phu_thu = request.form['phu_thu']
+	#thong_tin_phu_thu = request.form['mo_ta']
 	tien_phu_thu = 50000					# tiền phụ thu
 	thong_tin_phu_thu = "bóng đèn"			# thông tin phụ thu
-@app.route("/customerinroom/<roomid>")
-def getcustomer(roomid):
-	db.connectDB()
-	return json.dumps(db.getCustomerByRoomId(roomid))
-
-@app.route("/rooms")
-def getRooms():
-	db.connectDB()
-	return json.dumps(db.getAllRooms())
 	
 	results = db.getIndexData(_room, _lastMonth)
 	_cs_dien_old = results['cs_dien']
@@ -105,3 +100,13 @@ def getRooms():
 	db.updateBill(_lastBillID, tong_tien, tien_phu_thu, thong_tin_phu_thu)
 	db.closeDB()
 	return "OK"
+
+@app.route("/customerinroom/<roomid>")
+def getcustomer(roomid):
+	db.connectDB()
+	return json.dumps(db.getCustomerByRoomId(roomid))
+
+@app.route("/rooms")
+def getRooms():
+	db.connectDB()
+	return json.dumps(db.getAllRooms())

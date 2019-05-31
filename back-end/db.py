@@ -126,6 +126,13 @@ def getPrice():
 	cursor.execute(sql)
 	return cursor.fetchone()
 
+# lấy giá phòng
+def getRoomPrice(_room):
+	sql = "SELECT gia_phong FROM `phongtro` WHERE ma_phong = '{0}'".format(_room)
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchone()
+
 # cập nhật tổng tiền trọ, phụ thu vào biên lai
 def updateBill(_billID, _total, _extra, _extraInfo):
 	sql = "UPDATE `bien_lai` SET `tong_tien` = '{1}', `phu_phi` = '{2}', `mo_ta_phu_phi` = '{3}' WHERE `ma_bien_lai` = '{0}'".format(_billID, _total, _extra, _extraInfo)
