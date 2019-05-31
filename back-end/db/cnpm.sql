@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2019 at 05:42 PM
+-- Generation Time: May 31, 2019 at 08:11 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -29,11 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bien_lai` (
-  `ngay_dong` datetime NOT NULL,
-  `nguoi_dong` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `phu_phi` int(11) NOT NULL,
-  `mo_ta` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ma_bien_lai` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `ngay_dong` datetime DEFAULT NULL,
+  `nguoi_dong` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phu_phi` int(11) NOT NULL DEFAULT '0',
+  `mo_ta_phu_phi` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `ma_bien_lai` int(11) NOT NULL,
+  `ma_phong` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tong_tien` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -43,12 +45,40 @@ CREATE TABLE `bien_lai` (
 --
 
 CREATE TABLE `chi_so` (
+  `stt` int(11) NOT NULL,
   `ma_phong` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `thang` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `so_thang_o` int(11) NOT NULL,
   `cs_dien` int(11) NOT NULL DEFAULT '0',
   `cs_nuoc` int(11) NOT NULL DEFAULT '0',
-  `ma_bien_lai` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
+  `ma_bien_lai` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chi_so`
+--
+
+INSERT INTO `chi_so` (`stt`, `ma_phong`, `so_thang_o`, `cs_dien`, `cs_nuoc`, `ma_bien_lai`) VALUES
+(1, 'A001', 0, 0, 0, NULL),
+(2, 'A002', 0, 0, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gia_tien`
+--
+
+CREATE TABLE `gia_tien` (
+  `stt` int(11) NOT NULL,
+  `gia_dien` int(11) NOT NULL,
+  `gia_nuoc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gia_tien`
+--
+
+INSERT INTO `gia_tien` (`stt`, `gia_dien`, `gia_nuoc`) VALUES
+(1, 3500, 15000);
 
 -- --------------------------------------------------------
 
@@ -57,12 +87,12 @@ CREATE TABLE `chi_so` (
 --
 
 CREATE TABLE `khach_tro` (
-  `ten` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ten` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `sdt` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `dia_chi` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dia_chi` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `cmnd` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `nghe_nghiep` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `noi_lam_viec` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nghe_nghiep` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `noi_lam_viec` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `ngay_thue` date NOT NULL,
   `phong_thue` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tinh_trang` int(11) NOT NULL DEFAULT '1' COMMENT '(1) đang thuê (0) ngừng thuê'
@@ -83,16 +113,17 @@ INSERT INTO `khach_tro` (`ten`, `sdt`, `dia_chi`, `cmnd`, `nghe_nghiep`, `noi_la
 
 CREATE TABLE `phong_tro` (
   `ma_phong` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `thong_tin` text CHARACTER SET utf8 COLLATE utf8_unicode_ci
+  `thong_tin` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `gia_phong` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `phong_tro`
 --
 
-INSERT INTO `phong_tro` (`ma_phong`, `thong_tin`) VALUES
-('A001', NULL),
-('A002', NULL);
+INSERT INTO `phong_tro` (`ma_phong`, `thong_tin`, `gia_phong`) VALUES
+('A001', NULL, 1000000),
+('A002', NULL, 1500000);
 
 -- --------------------------------------------------------
 
@@ -101,6 +132,7 @@ INSERT INTO `phong_tro` (`ma_phong`, `thong_tin`) VALUES
 --
 
 CREATE TABLE `phuong_tien` (
+  `stt` int(11) NOT NULL,
   `so_xe` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `chu_xe` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `loai_xe` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
@@ -110,8 +142,8 @@ CREATE TABLE `phuong_tien` (
 -- Dumping data for table `phuong_tien`
 --
 
-INSERT INTO `phuong_tien` (`so_xe`, `chu_xe`, `loai_xe`) VALUES
-('51-S1-12345', '123456789', 'Honda');
+INSERT INTO `phuong_tien` (`stt`, `so_xe`, `chu_xe`, `loai_xe`) VALUES
+(1, '51-S1-12345', '123456789', 'Honda');
 
 -- --------------------------------------------------------
 
@@ -149,8 +181,15 @@ ALTER TABLE `bien_lai`
 -- Indexes for table `chi_so`
 --
 ALTER TABLE `chi_so`
+  ADD PRIMARY KEY (`stt`),
   ADD KEY `chiso_phong` (`ma_phong`),
   ADD KEY `bienlai_chiso` (`ma_bien_lai`);
+
+--
+-- Indexes for table `gia_tien`
+--
+ALTER TABLE `gia_tien`
+  ADD PRIMARY KEY (`stt`);
 
 --
 -- Indexes for table `khach_tro`
@@ -169,6 +208,7 @@ ALTER TABLE `phong_tro`
 -- Indexes for table `phuong_tien`
 --
 ALTER TABLE `phuong_tien`
+  ADD PRIMARY KEY (`stt`),
   ADD KEY `chuxe_phuongtien` (`chu_xe`);
 
 --
@@ -176,6 +216,34 @@ ALTER TABLE `phuong_tien`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bien_lai`
+--
+ALTER TABLE `bien_lai`
+  MODIFY `ma_bien_lai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `chi_so`
+--
+ALTER TABLE `chi_so`
+  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `gia_tien`
+--
+ALTER TABLE `gia_tien`
+  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `phuong_tien`
+--
+ALTER TABLE `phuong_tien`
+  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -191,7 +259,6 @@ ALTER TABLE `bien_lai`
 -- Constraints for table `chi_so`
 --
 ALTER TABLE `chi_so`
-  ADD CONSTRAINT `bienlai_chiso` FOREIGN KEY (`ma_bien_lai`) REFERENCES `bien_lai` (`ma_bien_lai`),
   ADD CONSTRAINT `chiso_phong` FOREIGN KEY (`ma_phong`) REFERENCES `phong_tro` (`ma_phong`);
 
 --

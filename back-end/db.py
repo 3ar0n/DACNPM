@@ -81,6 +81,65 @@ def getUserById(id):
 	cursor = connection.cursor()
 	cursor.execute(sql)
 	return cursor.fetchone()
+
+# lấy thông tin tháng mới nhất có chỉ số (tháng trước) của phòng trong bảng
+def getLastMonth(_room):
+	sql = "SELECT so_thang_o FROM `chi_so` WHERE ma_phong = '{0}' ORDER BY so_thang_o DESC".format(_room)
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchone()
+
+# lấy thông tin mã biên lai mới nhất trong bảng
+def getlastBillID():
+	sql = "SELECT ma_bien_lai FROM `bien_lai` ORDER BY ma_bien_lai DESC"
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchone()
+
+# thêm 1 biên lai mới cho 1 phòng
+def addNewBill(_room):
+	sql = "INSERT into `bien_lai`(ma_phong) values ('{0}')".format(_room)
+	print("inserted !!!")
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	connection.commit()
+
+# thêm các chỉ số điện, nước, tháng hiện tại theo mã biên lai và mã phòng
+def addBillInfo(_room, _billID, _month, _csDien, _csNuoc):
+	sql = "INSERT into `chi_so`(ma_phong, so_thang_o, cs_dien, cs_nuoc, ma_bien_lai) values ('{0}','{1}','{2}','{3}','{4}')".format(_room, _month, _csDien, _csNuoc, _billID)
+	print("inserted !!!")
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	connection.commit()
+
+# lấy chỉ số của tháng
+def getIndexData(_room, _month):
+	sql = "SELECT cs_dien, cs_nuoc FROM `chi_so` WHERE ma_phong = '{0}' and so_thang_o = '{1}'".format(_room, _month)
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchone()
+
+# lấy giá điện, nước
+def getPrice():
+	sql = "SELECT * FROM `gia_tien`"
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchone()
+
+# lấy giá phòng
+def getRoomPrice(_room):
+	sql = "SELECT gia_phong FROM `phongtro` WHERE ma_phong = '{0}'".format(_room)
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	return cursor.fetchone()
+
+# cập nhật tổng tiền trọ, phụ thu vào biên lai
+def updateBill(_billID, _total, _extra, _extraInfo):
+	sql = "UPDATE `bien_lai` SET `tong_tien` = '{1}', `phu_phi` = '{2}', `mo_ta_phu_phi` = '{3}' WHERE `ma_bien_lai` = '{0}'".format(_billID, _total, _extra, _extraInfo)
+	print("inserted !!!")
+	cursor = connection.cursor()
+	cursor.execute(sql)
+	connection.commit()
 	
 def closeDB():
 	connection.close()
