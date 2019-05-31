@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2019 at 07:55 AM
+-- Generation Time: May 31, 2019 at 08:11 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -89,10 +89,10 @@ INSERT INTO `gia_tien` (`stt`, `gia_dien`, `gia_nuoc`) VALUES
 CREATE TABLE `khach_tro` (
   `ten` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `sdt` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `dia_chi` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dia_chi` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `cmnd` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `nghe_nghiep` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `noi_lam_viec` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nghe_nghiep` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `noi_lam_viec` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `ngay_thue` date NOT NULL,
   `phong_thue` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tinh_trang` int(11) NOT NULL DEFAULT '1' COMMENT '(1) đang thuê (0) ngừng thuê'
