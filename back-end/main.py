@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template, Response
 import db
 import json
 app = Flask(__name__)
@@ -42,16 +42,14 @@ def insertDB():
 def login():
 	db.connectDB()
 	#data = request.form
-	username = request.form['username']
-	password = request.form['password']
+	id = request.form['id']
+	password = request.form['mat_khau']
 	#print(request.data)
-	users = db.getUser(username)
+	user = db.getUserById(id)
 	db.closeDB()
-	for user in users:
-		if (user == None):
-			return Response("{'a':'b'}", status=401, mimetype='application/json') 
-		#encryptedPass = bcrypt.generate_password_hash(data.password)
-		if (username == user['tai_khoan'] and password == user['mat_khau']):#bcrypt.check_password_hash(encryptedPass, password)):
-			return user
-
+	if (user == None):
+		return Response(False, status=401, mimetype='application/json')
+	if (id == user['id'] and password == user['mat_khau']):
+		return Response(True, status=200, mimetype='application/json')
+	return Response(False, status=401, mimetype='application/json')
 	
