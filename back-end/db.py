@@ -76,11 +76,11 @@ def addRoomInfo(_room, _info):
 	connection.commit()
 
 # lấy thông tin cơ bản của user theo username (bị trùng với truy vấn phía trên)
-def getUserByUsername(username):
-	sql = "SELECT * FROM `user` WHERE user.tai_khoan = '{0}'".format(username) 
+def getUserById(id):
+	sql = "SELECT id, mat_khau FROM `user` WHERE user.id = '{0}' and user.account_type=1".format(id) 
 	cursor = connection.cursor()
 	cursor.execute(sql)
-	return cursor
+	return cursor.fetchone()
 	
 def closeDB():
 	connection.close()
